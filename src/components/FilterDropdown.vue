@@ -1,18 +1,39 @@
 <template>
     <div class="filter-dropdown">
-        <select class="filter-dropdown__select">
-            <option>Filter by region</option>
-            <option>option 2</option>
-            <option>option 3</option>
-            <option>option 4</option>
-        </select>
-        <span class="icon-arrow-down-sign-to-navigate"></span>
+        <div class="dropdown">
+            <button class="btn dropdown-toggle filter-dropdown__select" type="button" 
+                    id="dropdownMenuButton1" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+                Filter by Region
+                <span class="icon-arrow-down-sign-to-navigate"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <a class="dropdown-item" href="#" v-for="(region,index) in regions" 
+                            :value="region" 
+                            :key="index">{{region}}</a>
+                </li>
+            </ul>
+        </div>
     </div>
+
 </template>
 
 <script>
 export default {
-    name: 'FilterDropdown'
+    name: 'FilterDropdown',
+    data(){
+        return{
+            regions:[
+                'Africa',
+                'America',
+                'Asia',
+                'Europe',
+                'Oceania'
+            ]
+        }
+    }
 
 }
 </script>
