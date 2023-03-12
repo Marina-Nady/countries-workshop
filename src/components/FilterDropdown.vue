@@ -11,8 +11,8 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li>
                     <a class="dropdown-item" href="#" v-for="(region,index) in regions" 
-                            :value="region" 
-                            :key="index">{{region}}</a>
+                            :key="index"
+                            @click.prevent="getVal(region)">{{region}}</a>
                 </li>
             </ul>
         </div>
@@ -33,6 +33,13 @@ export default {
                 'Oceania'
             ]
         }
+    },
+    methods:{
+        getVal(val){
+            this.$emit('getVal',val)
+        }
+
+
     }
 
 }

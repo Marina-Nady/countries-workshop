@@ -3,7 +3,7 @@
         <header-component></header-component>
         <div class="home-page__search-bar">
             <search-input @getText="getSearchVal"></search-input>
-            <filter-dropdown></filter-dropdown>
+            <filter-dropdown @getVal="getFilterVal"></filter-dropdown>
         </div>
         <listing-component></listing-component>
     </div>
@@ -24,12 +24,16 @@ export default {
     },
     data(){
         return{
-            searchVal: ''
+            searchVal: '',
+            filterVal: ''
         }
     },
     methods:{
         getSearchVal(text){
             this.searchVal = text
+        },
+        getFilterVal(val){
+            this.filterVal = val
         }
     }
 
