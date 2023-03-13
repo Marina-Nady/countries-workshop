@@ -14,6 +14,8 @@ import HeaderComponent from './Header.vue'
 import ListingComponent from './Listing.vue'
 import FilterDropdown from './FilterDropdown.vue'
 import SearchInput from './SearchInput.vue'
+import { getAll } from '../services/countries'
+
 export default {
     name: 'HomePage',
     components: {
@@ -25,7 +27,8 @@ export default {
     data(){
         return{
             searchVal: '',
-            filterVal: ''
+            filterVal: '',
+            allCounties: []
         }
     },
     methods:{
@@ -34,8 +37,14 @@ export default {
         },
         getFilterVal(val){
             this.filterVal = val
+        },
+        getCountries(){
+           this.allCounties =  getAll()
         }
+    },
+    mounted(){
     }
+
 
 }
 </script>
