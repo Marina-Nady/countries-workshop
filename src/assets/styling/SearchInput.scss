@@ -24,3 +24,14 @@
     }
 }
 
+
+
+@media (max-width: 767px){
+    .search-input{
+        flex: 100%;
+        margin-bottom: 50px;
+        .search-input__form{
+            width: 100%;
+        }
+    }
+}

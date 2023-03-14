@@ -7,3 +7,12 @@
         flex-wrap: wrap;
     }
 }
+
+@media (max-width: 767px){
+
+    .home-page{
+        .home-page__search-bar{
+            padding: 45px 20px;
+        }
+    }
+}

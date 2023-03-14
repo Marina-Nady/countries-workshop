@@ -5,7 +5,7 @@
             <search-input @getText="getSearchVal"></search-input>
             <filter-dropdown @getVal="getFilterVal"></filter-dropdown>
         </div>
-        <listing-component></listing-component>
+        <listing-component :countries="allCountries"></listing-component>
     </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
         return{
             searchVal: '',
             filterVal: '',
-            allCounties: []
+            allCountries: []
         }
     },
     methods:{
@@ -38,11 +38,16 @@ export default {
         getFilterVal(val){
             this.filterVal = val
         },
-        getCountries(){
-           this.allCounties =  getAll()
+        async getCountries(){
+            this.allCountries = await getAll()
+                            .then((res)=>{
+                                return res.data
+                            })
+                            .catch(err => err)
         }
     },
     mounted(){
+       this.getCountries()
     }
 
 

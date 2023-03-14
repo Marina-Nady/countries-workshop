@@ -1,10 +1,6 @@
 import axios from 'axios';
 
-function getAll(){
-    axios.get('https://restcountries.com/v3.1/all')
-    .then((res) => res.data)
-    .catch((err)=> err)
-}
+const getAll = () => axios.get('https://restcountries.com/v3.1/all');
 
 export{
     getAll
