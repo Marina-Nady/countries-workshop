@@ -3,7 +3,8 @@
   <div class="listing">
     <generic-card v-for="(country,index) in countries" 
                   :key="index"
-                  :data="country"></generic-card>
+                  :data="country"
+                  @getObj="getName"></generic-card>
   </div>
 </template>
 
@@ -14,6 +15,13 @@ export default {
     props:['countries'],
     components:{
       GenericCard
+    },
+    methods:{
+      getName(name){
+        console.log(name)
+
+      }
+
     },
     mounted(){
 

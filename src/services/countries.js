@@ -1,8 +1,12 @@
 import axios from 'axios';
+let endPoint = 'http://localhost:3000/data'
 
-const getAll = () => axios.get('https://restcountries.com/v3.1/all');
+const getAll = () => axios.get(`${endPoint}`);
+const getDetails = (name) => axios.get(`${endPoint}?name=${name}`);
+
 
 export{
-    getAll
+    getAll,
+    getDetails
 
 }
