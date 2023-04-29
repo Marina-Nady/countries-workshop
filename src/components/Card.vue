@@ -9,7 +9,7 @@
             <h3 class="generic-card__content__title">{{data.name}}</h3>
             <p>Population: {{data.population}}</p>
             <p>Region: {{data.region}}</p>
-            <p>Capital: {{data.capital ? data.capital[0] : 'Not Exist'}}</p>
+            <p>Capital: {{data.capital ? data.capital : 'Not Exist'}}</p>
         </div>
 
     </div>

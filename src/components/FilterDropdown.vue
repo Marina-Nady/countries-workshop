@@ -5,13 +5,15 @@
                     id="dropdownMenuButton1" 
                     data-bs-toggle="dropdown" 
                     aria-expanded="false">
-                Filter by Region
+                {{region || regions[0] }}
                 <span class="icon-arrow-down-sign-to-navigate"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li>
                     <a class="dropdown-item" href="#" v-for="(region,index) in regions" 
                             :key="index"
+                            :disabled="index == 0"
+                            :class="index == 0 ? 'disable' : ''"
                             @click.prevent="getVal(region)">{{region}}</a>
                 </li>
             </ul>
@@ -26,16 +28,19 @@ export default {
     data(){
         return{
             regions:[
+                'Filter by Region',
                 'Africa',
-                'America',
+                'Americas',
                 'Asia',
                 'Europe',
                 'Oceania'
-            ]
+            ],
+            region: ''
         }
     },
     methods:{
         getVal(val){
+            this.region = val
             this.$emit('getVal',val)
         }
 

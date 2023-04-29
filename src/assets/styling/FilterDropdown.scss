@@ -27,6 +27,22 @@
         width: 56%;
         border: none;
         margin-top: 3px !important;
+        li{
+            .dropdown-item{
+                &.disable{
+                    color: #9d9999;
+                    cursor: auto;
+                    &:hover{
+                        background-color: transparent;
+                    }
+                    &:focus{
+                        background-color: transparent;
+                    }
+
+                }
+
+            }
+        }
     
     }
 }

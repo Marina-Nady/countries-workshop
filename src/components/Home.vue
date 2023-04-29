@@ -5,7 +5,8 @@
             <search-input @getText="getSearchVal"></search-input>
             <filter-dropdown @getVal="getFilterVal"></filter-dropdown>
         </div>
-        <listing-component :countries="allCountries"></listing-component>
+        <listing-component  v-if="!isLoading" :countries="allCountries"></listing-component>
+        <h1 v-if="isLoading">Loading...</h1>
     </div>
 </template>
 
@@ -14,7 +15,7 @@ import HeaderComponent from './Header.vue'
 import ListingComponent from './Listing.vue'
 import FilterDropdown from './FilterDropdown.vue'
 import SearchInput from './SearchInput.vue'
-import { getAll } from '../services/countries'
+import { getAll,getByName,getByRegion } from '../services/countries'
 
 export default {
     name: 'HomePage',
@@ -26,24 +27,63 @@ export default {
     },
     data(){
         return{
-            searchVal: '',
             filterVal: '',
-            allCountries: []
+            searchval:'',
+            allCountries: [],
+            isLoading: false
         }
     },
     methods:{
-        getSearchVal(text){
-            this.searchVal = text
+        getSearchVal(searchVal){
+            this.searchval = searchVal
+            if(this.searchVal){
+                this.getByName(this.searchVal)
+            }
+            else{
+                this.getCountries()
+            }
         },
         getFilterVal(val){
             this.filterVal = val
+            if(this.filterVal){
+                this.getByRegion(this.filterVal)
+            }else{
+                this.getCountries()
+            }
         },
         async getCountries(){
+            this.isLoading = true
             this.allCountries = await getAll()
                             .then((res)=>{
+                                this.isLoading = false
                                 return res.data
                             })
-                            .catch(err => err)
+                            .catch(err => {
+                                this.isLoading = false
+                                return err})
+        },
+        async getByName(country){
+            this.isLoading = true
+            this.allCountries = await getByName(country)
+                .then((res)=>{
+                    this.isLoading = false
+                    return res.data
+                })
+                .catch(err => {
+                    this.isLoading = false
+                    return err})
+        },
+        async getByRegion(region){
+                this.isLoading = true
+                this.allCountries = await getByRegion(region)
+                .then((res)=>{
+                    this.isLoading = false
+                    return res.data
+                })
+                .catch(err => {
+                    this.isLoading = false
+                    return err})
+
         }
     },
     mounted(){
