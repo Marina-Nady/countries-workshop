@@ -1,6 +1,5 @@
 <template>
     <div class="home-page">
-        <header-component></header-component>
         <div class="home-page__search-bar">
             <search-input @getText="getSearchVal"></search-input>
             <filter-dropdown @getVal="getFilterVal"></filter-dropdown>
@@ -11,7 +10,6 @@
 </template>
 
 <script>
-import HeaderComponent from './Header.vue'
 import ListingComponent from './Listing.vue'
 import FilterDropdown from './FilterDropdown.vue'
 import SearchInput from './SearchInput.vue'
@@ -20,7 +18,6 @@ import { getAll,getByName,getByRegion } from '../services/countries'
 export default {
     name: 'HomePage',
     components: {
-        HeaderComponent,
         ListingComponent,
         FilterDropdown,
         SearchInput
@@ -36,8 +33,8 @@ export default {
     methods:{
         getSearchVal(searchVal){
             this.searchval = searchVal
-            if(this.searchVal){
-                this.getByName(this.searchVal)
+            if(searchVal){
+                this.getByName(searchVal)
             }
             else{
                 this.getCountries()

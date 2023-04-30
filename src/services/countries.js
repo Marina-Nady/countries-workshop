@@ -12,5 +12,6 @@ export{
     getAll,
     getByName,
     getByRegion
+    
 
 }

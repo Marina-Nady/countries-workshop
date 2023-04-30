@@ -1,5 +1,6 @@
 <template>
     <div class="generic-card" @click="getName(data.name)">
+
         <div class="generic-card__image-container">
             <div class="generic-card__image">
                 <img :src="data.flags.png">
