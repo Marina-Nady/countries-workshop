@@ -12,8 +12,6 @@
                 <li>
                     <a class="dropdown-item" href="#" v-for="(region,index) in regions" 
                             :key="index"
-                            :disabled="index == 0"
-                            :class="index == 0 ? 'disable' : ''"
                             @click.prevent="getVal(region)">{{region}}</a>
                 </li>
             </ul>

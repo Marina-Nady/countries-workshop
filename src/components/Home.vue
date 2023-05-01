@@ -4,8 +4,9 @@
             <search-input @getText="getSearchVal"></search-input>
             <filter-dropdown @getVal="getFilterVal"></filter-dropdown>
         </div>
-        <listing-component  v-if="!isLoading" :countries="allCountries"></listing-component>
+        <listing-component  v-if="!isLoading" :countries="filteredCountries"></listing-component>
         <h1 v-if="isLoading">Loading...</h1>
+        <h1 v-if="!isLoading && filteredCountries">No Results</h1>
     </div>
 </template>
 
@@ -13,7 +14,7 @@
 import ListingComponent from './Listing.vue'
 import FilterDropdown from './FilterDropdown.vue'
 import SearchInput from './SearchInput.vue'
-import { getAll,getByName,getByRegion } from '../services/countries'
+import { getAll } from '../services/countries'
 
 export default {
     name: 'HomePage',
@@ -27,14 +28,18 @@ export default {
             filterVal: '',
             searchval:'',
             allCountries: [],
-            isLoading: false
+            isLoading: false,
+            filteredCountries: []
         }
     },
     methods:{
         getSearchVal(searchVal){
-            this.searchval = searchVal
             if(searchVal){
-                this.getByName(searchVal)
+                this.filteredCountries = this.allCountries.filter((country) => {
+                    let name = country.name.toLowerCase();
+                    let search = searchVal.toLowerCase()
+                    return name.includes(search)
+                    })
             }
             else{
                 this.getCountries()
@@ -42,8 +47,8 @@ export default {
         },
         getFilterVal(val){
             this.filterVal = val
-            if(this.filterVal){
-                this.getByRegion(this.filterVal)
+            if(this.filterVal != 'Filter by Region'){
+                this.filteredCountries = this.allCountries.filter((country)=> val == country.region)
             }else{
                 this.getCountries()
             }
@@ -53,35 +58,13 @@ export default {
             this.allCountries = await getAll()
                             .then((res)=>{
                                 this.isLoading = false
-                                return res.data
+                                return res.data.data
                             })
                             .catch(err => {
                                 this.isLoading = false
                                 return err})
+            this.filteredCountries = this.allCountries
         },
-        async getByName(country){
-            this.isLoading = true
-            this.allCountries = await getByName(country)
-                .then((res)=>{
-                    this.isLoading = false
-                    return res.data
-                })
-                .catch(err => {
-                    this.isLoading = false
-                    return err})
-        },
-        async getByRegion(region){
-                this.isLoading = true
-                this.allCountries = await getByRegion(region)
-                .then((res)=>{
-                    this.isLoading = false
-                    return res.data
-                })
-                .catch(err => {
-                    this.isLoading = false
-                    return err})
-
-        }
     },
     mounted(){
        this.getCountries()
