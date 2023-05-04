@@ -6,7 +6,7 @@
         </div>
         <listing-component  v-if="!isLoading" :countries="filteredCountries"></listing-component>
         <h1 v-if="isLoading">Loading...</h1>
-        <h1 v-if="!isLoading && filteredCountries">No Results</h1>
+        <h1 v-if="!isLoading && !filteredCountries">No Results</h1>
     </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
         getSearchVal(searchVal){
             if(searchVal){
                 this.filteredCountries = this.allCountries.filter((country) => {
-                    let name = country.name.toLowerCase();
+                    let name = country.name.common.toLowerCase();
                     let search = searchVal.toLowerCase()
                     return name.includes(search)
                     })
@@ -58,7 +58,7 @@ export default {
             this.allCountries = await getAll()
                             .then((res)=>{
                                 this.isLoading = false
-                                return res.data.data
+                                return res.data
                             })
                             .catch(err => {
                                 this.isLoading = false
