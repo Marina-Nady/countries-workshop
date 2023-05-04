@@ -17,6 +17,8 @@
 @import './FilterDropdown.scss';
 @import './SearchInput.scss';
 @import './Card.scss';
+@import './DetailsPage.scss';
+
 
 
 
@@ -49,4 +51,6 @@
   .icon-arrow-down-sign-to-navigate:before {
     content: "\e909";
   }
-    
+  .icon-left-arrow-long:before {
+    content: "\e930";
+  }  
