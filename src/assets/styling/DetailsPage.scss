@@ -1,20 +1,22 @@
 .details-page{
     margin: 0 60px 60px 60px;
+    background-color: var(--body-bg);
 
     .details-page__back-btn{
         a{
             text-decoration: none;
             button{
                 margin: 70px 0;
-                box-shadow: 0px 0px 11px 3px #ededed;
+                box-shadow: 0px 0px 11px 3px var(--box-shadow);
                 border: none;
-                background: #fff;
+                background: var(--header-bg);
                 padding: 7px 50px;
                 border-radius: 5px;
                 display: flex;
                 align-items: baseline;
                 justify-content: center;
                 text-decoration: none;
+                color: var(--font-color);
                 .details-page__back-btn__btn-icon{
                     font-size: 13px;
                 } 
@@ -30,6 +32,7 @@
     .details-page__content{
         display: flex;
         align-items: center;
+        color: var(--font-color);
 
         .details-page__image-container{
             position: relative;
@@ -89,12 +92,13 @@
                     margin-right: 20px;                        
                 }
                 > button{
-                    box-shadow: 0px 0px 5px 3px #ededed;
+                    box-shadow: 0px 0px 5px 3px var(--box-shadow);
                     border: none;
-                    background: #fff;
+                    background: var(--header-bg);
                     padding: 3px 30px;
                     border-radius: 3px;
-                    margin-right: 10px;                
+                    margin-right: 10px;      
+                    color: var(--font-color);          
 
                 }
             }

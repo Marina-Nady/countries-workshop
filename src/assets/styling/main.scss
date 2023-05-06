@@ -10,7 +10,26 @@
 :root {
     --fontModifier: 1;
   }
-  
+
+  [data-theme="dark"] {
+    --header-bg: #2B3743;
+    --font-color: #fff;
+    --body-bg: #202D36;
+    --box-shadow: #202932;
+  }
+  [data-theme="light"] {
+    --header-bg: #fff;
+    --font-color: #000;
+    --body-bg: #FAFAFA;
+    --box-shadow: #ededed;
+
+  }
+
+  body{
+    background-color: var(--body-bg);
+    color: var(--font-color);          
+
+  }
 @import './Header.scss';
 @import './Listing.scss';
 @import './Home.scss';
@@ -43,7 +62,6 @@
   }
   .icon-dark-mode:before {
     content: "\e90a";
-    color: #092e5c;
   }
   .icon-magnifying-glass:before {
     content: "\e913";
