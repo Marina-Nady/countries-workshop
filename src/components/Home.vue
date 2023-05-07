@@ -8,6 +8,7 @@
         <h1 v-if="isLoading">Loading...</h1>
         <h1 v-if="!isLoading && !filteredCountries">No Results</h1>
     </div>
+    <div id="observer"></div>
 </template>
 
 <script>
@@ -29,7 +30,10 @@ export default {
             searchval:'',
             allCountries: [],
             isLoading: false,
-            filteredCountries: []
+            filteredCountries: [],
+            startCard: 0,
+            endCard: 8,
+            bottom: false,
         }
     },
     methods:{
@@ -63,11 +67,38 @@ export default {
                             .catch(err => {
                                 this.isLoading = false
                                 return err})
-            this.filteredCountries = this.allCountries
+            this.filteredCountries = this.allCountries.slice(this.startCard, this.endCard)
+        },
+        loadMore(){
+            this.startCard += 8
+            this.endCard += 8
+            let newItems = this.allCountries.slice(this.startCard, this.endCard)
+            this.filteredCountries = this.filteredCountries.concat(newItems)
+
+        },
+        bottomVisible() {
+            const scrollY = window.scrollY;
+            const visible = document.documentElement.clientHeight;
+            const pageHeight = document.documentElement.scrollHeight;
+            const bottomOfPage = visible + scrollY >= pageHeight;
+            return bottomOfPage || pageHeight < visible;
         },
     },
+    watch: {
+        bottom(bottom) {
+            if (bottom) {
+                this.loadMore();
+            }
+        }
+    },
     mounted(){
-       this.getCountries()
+        window.addEventListener('scroll', () => {
+            this.bottom = this.bottomVisible()
+        });
+        this.getCountries()
+        this.startCard = 0
+        this.endCard = 8
+
     }
 
 

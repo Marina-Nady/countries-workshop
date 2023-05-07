@@ -1,5 +1,5 @@
 <template>
-<div class="details-page" v-for="(item,index) in details" :key="index">
+<div class="details-page">
   <div class="details-page__back-btn">
   <router-link to="/">
     <button>
@@ -8,7 +8,7 @@
     </button>
   </router-link>
   </div>
-  <div class="details-page__content">
+  <div class="details-page__content" v-for="(item,index) in details" :key="index">
     <div class="details-page__image-container">
       <div class="details-page__image">
         <img :src="item.flags.svg">
@@ -56,10 +56,13 @@
       </div>
       <div class="details-page__info__borders details-page__info__row">
         <label class="details-page__info__label">Border Countries:</label>
-        <button v-for="(item,index) in item.borders" 
-                :key="index" 
-                :value="item" 
-                @click="openBorderCountry">{{item}}</button>
+        <div class="details-page__info__btns" v-if="borderNames.length > 0">
+          <button v-for="(item,index) in borderNames" 
+                  :key="index" 
+                  :value="item" 
+                  @click="openBorderCountry">{{item}}</button>
+        </div>
+        <span v-else>No Boders</span>
         
       </div>
 
@@ -78,36 +81,48 @@ export default {
         return{
           details: null,
           name: this.$attrs.name,
-          borders: null
+          borders: null,
+          borderNames: []
         }
     },
     methods:{
-      async getDetails(){
-          this.details = await getByName(this.name)
-                          .then((res)=>{
-                              return res.data
-                          })
-                          .catch(err => {
-                              return err})
+       getDetails(){
+           getByName(this.name)
+          .then((res)=>{
+            this.details = res.data
+            this.borders = res.data[0].borders
+            this.borders.map((border)=>{
+              getByCode(border)
+              .then((res)=>{
+                this.borderNames.push(res.data[0].name.common)
+
+              })
+              .catch(err=>err)
+
+            })
+
+          })
+          .catch(err => {
+              return err})
       },
-      async getBorder(code){
-          this.details = await getByCode(code)
-                          .then((res)=>{
-                              this.name = res.data[0].name.common
-                              this.$router.push(`/details/${this.name}`)
-                              return res.data
-                          })
-                          .catch(err => {
-                              return err})
+      getBorder(name){
+          getByName(name)
+          .then((res)=>{
+              this.$router.push(`/details/${name}`)
+              this.details = res.data
+          })
+          .catch(err => {
+              return err})
       },
       openBorderCountry(e){
-        let code = e.target.value
-        this.getBorder(code)
+        let name = e.target.value
+        this.getBorder(name)
 
       },
     },
     mounted(){
        this.getDetails()
+
 
     },
 

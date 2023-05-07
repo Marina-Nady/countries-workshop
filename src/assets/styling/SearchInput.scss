@@ -27,7 +27,16 @@
     }
 }
 
+@media (max-width: 1024px){
+    .search-input{
+        flex: 50%;
+        .search-input__form{
+            width: 100%;
+        }
 
+
+    }
+}
 
 @media (max-width: 767px){
     .search-input{

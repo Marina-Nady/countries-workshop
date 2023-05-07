@@ -33,6 +33,9 @@
         display: flex;
         align-items: center;
         color: var(--font-color);
+        margin-bottom: 70px;
+        flex-wrap: wrap;
+
 
         .details-page__image-container{
             position: relative;
@@ -70,6 +73,7 @@
                 display: flex;
                 justify-content: space-between;
                 margin-bottom: 60px;
+                flex-wrap: wrap;
 
                 .details-page__info__first-col,
                 .details-page__info__second-col{
@@ -87,20 +91,30 @@
             }
 
             .details-page__info__borders{
+                display: flex;
+                flex-wrap: wrap;
                 .details-page__info__label{
                     font-weight: 600;
-                    margin-right: 20px;                        
+                    margin-right: 20px;    
+                    margin-bottom: 10px;                    
+                    
                 }
-                > button{
-                    box-shadow: 0px 0px 5px 3px var(--box-shadow);
-                    border: none;
-                    background: var(--header-bg);
-                    padding: 3px 30px;
-                    border-radius: 3px;
-                    margin-right: 10px;      
-                    color: var(--font-color);          
+                .details-page__info__btns{
+                    display: flex;
+                    flex-wrap: wrap;
+                    button{
+                        box-shadow: 0px 0px 5px 3px var(--box-shadow);
+                        border: none;
+                        background: var(--header-bg);
+                        padding: 3px 30px;
+                        border-radius: 3px;
+                        margin-right: 10px;      
+                        color: var(--font-color);       
+                        margin-bottom: 10px;   
+    
+                    }
+                }
 
-                }
             }
         }
 
@@ -108,3 +122,41 @@
     }
 
 
+    @media (max-width: 767px){
+        .details-page{
+            margin: 0 20px 60px 20px;
+        
+            .details-page__content{
+        
+                .details-page__image-container{
+                    flex: 100%;
+                    margin-right: unset;
+                    margin-bottom: 40px;
+
+                }
+                .details-page__info{
+                    flex: 100%;    
+                    .details-page__info__content{
+                        margin-bottom: unset;
+    
+                        .details-page__info__first-col,
+                        .details-page__info__second-col{
+                            flex: 100%;
+                            margin-bottom: 30px;
+
+                        }
+        
+        
+                    }
+                    .details-page__info__borders{
+                        .details-page__info__label{
+                            margin-right: unset;    
+                        }
+
+        
+                    }
+                }
+        
+                }
+            }
+    }

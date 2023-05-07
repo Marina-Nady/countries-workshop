@@ -5,3 +5,18 @@
     gap: 60px;
 
 }
+
+
+@media (max-width: 1024px){
+    .listing{
+        gap: 30px;
+    
+    }
+}
+
+@media (max-width: 767px){
+    .listing{
+        padding: 0 20px;
+    
+    }
+}
