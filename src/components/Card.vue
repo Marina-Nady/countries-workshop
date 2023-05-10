@@ -12,9 +12,18 @@
             </div>
             <div class="generic-card__content">
                 <h3 class="generic-card__content__title">{{data.name.common}}</h3>
-                <p>Population: {{data.population}}</p>
-                <p>Region: {{data.region}}</p>
-                <p>Capital: {{data.capital ? data.capital[0] : 'Not Exist'}}</p>
+                <p class="generic-card__content__details">
+                    <span class="generic-card__content__details__label">Population:</span>
+                    <span> {{data.population}}</span>
+                </p>
+                <p class="generic-card__content__details">
+                    <span class="generic-card__content__details__label">Region:</span>
+                    <span> {{data.region}}</span>
+                </p>
+                <p class="generic-card__content__details">
+                    <span class="generic-card__content__details__label">Capital:</span>
+                    <span> {{data.capital ? data.capital[0] : 'Not Exist'}}</span>
+                </p>
             </div>
         </router-link>
     </div>
