@@ -30,6 +30,14 @@
     .header{
         align-items: baseline;
         padding: 15px 10px;
+        .header__title{
+            >h3{
+                font-size: 20px;
+            }
         }
+        .header__dark-mode{
+            font-size: 14px;
+        }
+    }
     
 }

@@ -1,8 +1,8 @@
 .listing{
     padding: 0 70px ;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 60px;
+    grid-template-columns: repeat(4,1fr);
 
 }
 
@@ -10,6 +10,8 @@
 @media (max-width: 1024px){
     .listing{
         gap: 30px;
+        grid-template-columns: repeat(3, 1fr);
+
     
     }
 }
@@ -17,6 +19,7 @@
 @media (max-width: 767px){
     .listing{
         padding: 0 20px;
+        grid-template-columns: repeat(1, 1fr);
     
     }
 }

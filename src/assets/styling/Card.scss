@@ -1,5 +1,4 @@
 .generic-card{
-    width: calc(22% - 9px);
     display: flex;
     flex-direction: column;
     background: var(--header-bg);
@@ -52,16 +51,16 @@
 }
 
 
-@media (max-width: 1024px){
-    .generic-card{
-        width: 30%;
+// @media (max-width: 1024px){
+//     .generic-card{
+//         width: 30%;
     
-    }
-}
+//     }
+// }
 
-@media (max-width: 767px){
-    .generic-card{
-        width: 100%;
+// @media (max-width: 767px){
+//     .generic-card{
+//         width: 100%;
     
-    }
-}
+//     }
+// }
