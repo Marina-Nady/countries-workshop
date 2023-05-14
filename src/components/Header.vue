@@ -28,17 +28,19 @@ export default {
         changeTheme() {
             if(this.theme == 'light'){
                 document.documentElement.setAttribute('data-theme', 'dark')
+                localStorage.setItem("theme", "dark");
                 this.theme = 'dark'
                 this.isDark = true
             }else{
                 document.documentElement.setAttribute('data-theme', 'light')
+                localStorage.setItem("theme", "light");
                 this.theme = 'light'
                 this.isDark = false
             }
         }
     },
     mounted(){
-        this.theme = document.documentElement.getAttribute("data-theme")
+        this.theme = localStorage.getItem("theme");
     }
 
 }
