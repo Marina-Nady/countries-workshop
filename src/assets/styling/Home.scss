@@ -10,6 +10,14 @@
     }
 }
 
+@media (max-width: 1024px){
+    .home-page{
+        .home-page__search-bar{
+            padding: 45px 40px;
+        }
+    }
+}
+
 @media (max-width: 767px){
 
     .home-page{

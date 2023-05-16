@@ -2,15 +2,17 @@
     padding: 0 70px ;
     display: grid;
     gap: 60px;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 257px);
 
 }
 
 
 @media (max-width: 1024px){
     .listing{
-        gap: 25px;
-        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        grid-template-columns: repeat(3, 209px);
+        padding: 0 40px;
+
 
     
     }
